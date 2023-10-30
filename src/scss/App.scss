@@ -1,0 +1,218 @@
+// reset
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+// customs variables
+
+$hamburger_icon_size: 5.4rem;
+$lines_container_size: 0.8 * $hamburger_icon_size;
+$line_height: 0.05 * $lines_container_size;
+$line_width: 0.8 * $lines_container_size;
+$padding: 1.2rem 2.3rem;
+$transition: transform 200ms ease-in 4ms; 
+
+// App
+
+.App {
+    --color-background: rgb(125, 185, 237);
+    --color-primary: rgb(42, 145, 236);
+    --color-secondary: rgb(13, 13, 5);
+    --color-ternary: rgb(248, 248, 248);
+    min-height: 100vh;
+    max-width: 100vw;
+    background-color: var(--color-background);
+    --font-size: 1.6rem;
+    @media screen and (min-width: 40em) {
+        --font-size: 1.4rem;
+    }
+
+    @media screen and (min-width: 64em) {
+        --font-size: 1.3rem;
+    }
+
+    @media screen and (min-width: 80em) {
+        --font-size: 1.2rem;
+    }
+
+    * {
+        font-size: var(--font-size);
+    }
+    position: relative;
+}
+
+// main_header
+
+.main_header {
+    background-color: var(--color-primary);
+    padding: 1.2rem 0 0 0;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+// hamburger_icon
+
+.hamburger_icon {
+    display: block;
+    position: relative;
+    width: $hamburger_icon_size;
+    height: $hamburger_icon_size;
+    background-color: transparent;
+    border: 0.1rem solid transparent;
+    margin-right: 1.2rem;
+    float: right;
+
+    &:focus {
+        @extend %set_outline_transparent;
+
+        .lines_container {
+            background-color: var(--color-ternary);
+        }
+        
+        [class ^= 'line-'] {
+            background-color: var(--color-primary);
+        }
+    }
+}
+
+// set_outline_transparent
+
+%set_outline_transparent {
+    outline: 0.1rem solid transparent;
+}
+
+// set_center
+
+%set_center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// lines_container
+
+.lines_container {
+    display: block;
+    @extend %set_center;
+    width: $lines_container_size;
+    height: $lines_container_size;
+    border: 0.1rem solid var(--color-ternary);
+}
+
+// line
+[class ^= 'line-'] {
+    display: block;
+    @extend %set_center;
+    background-color: var(--color-ternary);
+    width: $line_width;
+    height: $line_height;
+}
+
+// line-1
+
+.line-1 {
+    top: 25%;
+}
+
+// line-2
+
+.line-2 {
+    top: 75%;
+}
+
+// main_nav
+
+.main_nav {
+    clear: both;
+    margin-top: $hamburger_icon_size + 1.2rem;
+    overflow: hidden;
+}
+
+// closed
+
+.closed {
+    height: 0;
+}
+
+.intermediate {
+    transform: translateY(-100%);
+}
+
+// opened
+
+.opened {
+    transform: translateY(0%);
+}
+
+// nav_list
+
+.nav_list {
+    transform-origin: top;
+    transition: $transition;
+}
+
+// nav_link
+
+.nav_link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-ternary);
+    padding: $padding;
+    @extend %set_outline_transparent;
+
+    @media screen and (hover: hover) {
+        &:hover,
+        &:focus {
+            background-color: var(--color-ternary);
+            color: var(--color-primary);
+        }
+
+        &:active {
+            color: var(--color-ternary);
+            background-color: var(--color-secondary);
+        }
+    }
+}
+
+.msg {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.main_element {
+    h1 {
+        padding: $padding;
+    }
+
+    p {
+        $padding: 5.3rem 3.5rem 1.5rem;
+        padding: $padding;
+    }
+}
+
+// main_footer
+
+.main_footer {
+    background-color: var(--color-primary);
+    padding: 2.2rem 3.5rem;
+
+    address {
+        display: block;
+        color: var(--color-ternary);
+        margin: 2.3rem auto;
+        text-align: center;
+    }
+}
