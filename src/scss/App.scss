@@ -173,16 +173,16 @@ $transition: transform 200ms ease-in 4ms;
     padding: $padding;
     @extend %set_outline_transparent;
 
+    &:active {
+        color: var(--color-ternary);
+        background-color: var(--color-secondary);
+    }
+
     @media screen and (hover: hover) {
         &:hover,
         &:focus {
             background-color: var(--color-ternary);
             color: var(--color-primary);
-        }
-
-        &:active {
-            color: var(--color-ternary);
-            background-color: var(--color-secondary);
         }
     }
 }
