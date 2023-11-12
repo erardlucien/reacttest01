@@ -15,10 +15,6 @@ function createNavItem(navLinkContent, hrefValue, key, indexable) {
   );
 }
 
-function navItems(navItemsList) {
-  return navItemsList;
-}
-
 function createHeader(navItemsList, navListClassname, clickEvent) {
   return (
     <header className='main_header'>
@@ -31,7 +27,7 @@ function createHeader(navItemsList, navListClassname, clickEvent) {
       </button>
       <nav className='main_nav'>
         <ul className= { navListClassname }>
-          { navItems(navItemsList) }
+          { navItemsList }
         </ul>
       </nav>
     </header>
